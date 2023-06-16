@@ -8,7 +8,7 @@ class BoatManager extends AbstractManager {
   findByName(name) {
     return this.connection.query(
       `
-      select b.id, b.coord_x, b.coord_y, b.name, t.type
+      select b.id, b.coord_x, b.coord_y, b.name, t.type, t.has_treasure
       from ${this.table} b
       join tile t on b.coord_x = t.coord_x and b.coord_y = t.coord_y
       where name = ?
