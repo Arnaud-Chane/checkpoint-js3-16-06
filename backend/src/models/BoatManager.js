@@ -5,17 +5,16 @@ class BoatManager extends AbstractManager {
     super({ table: "boat" });
   }
 
-  insert(boat) {
-    return this.database.query(`insert into ${this.table} (name) values (?)`, [
-      boat.name,
+  findByName(name) {
+    return this.connection.query(`select * from ${this.table} where name = ?`, [
+      name,
     ]);
   }
 
-  update(boat) {
-    console.error(boat.id);
-    return this.database.query(
-      `update ${this.table} set name = ? where id = ?`,
-      [boat.name, boat.id]
+  updateBoat(boat) {
+    return this.connection.query(
+      `update ${this.table} set coord_x = ?, coord_y = ? where id = ?`,
+      [boat.coord_x, boat.coord_y, boat.id]
     );
   }
 }
