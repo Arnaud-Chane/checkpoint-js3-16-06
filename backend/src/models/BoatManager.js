@@ -23,6 +23,12 @@ class BoatManager extends AbstractManager {
       [boat.coord_x, boat.coord_y, boat.id]
     );
   }
+
+  resetBoat() {
+    return this.connection.query(
+      `update ${this.table} set coord_x = 1, coord_y = 1 where id = 1`
+    );
+  }
 }
 
 module.exports = BoatManager;
