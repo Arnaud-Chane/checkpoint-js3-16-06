@@ -1,7 +1,7 @@
 const models = require("../models");
 
-const findAllBoats = (req, res) => {
-  models.boat
+const findAllTiles = (req, res) => {
+  models.tile
     .findAll()
     .then(([rows]) => {
       res.send(rows);
@@ -12,8 +12,8 @@ const findAllBoats = (req, res) => {
     });
 };
 
-const findBoatById = (req, res) => {
-  models.boat
+const findTileById = (req, res) => {
+  models.tile
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -28,12 +28,12 @@ const findBoatById = (req, res) => {
     });
 };
 
-const createNewBoat = (req, res) => {
-  const boat = req.body;
-  models.boat
-    .insert(boat)
+const createNewTile = (req, res) => {
+  const tile = req.body;
+  models.tile
+    .insert(tile)
     .then(([result]) => {
-      res.location(`/boats/${result.insertId}`).sendStatus(201);
+      res.location(`/tiles/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -41,11 +41,11 @@ const createNewBoat = (req, res) => {
     });
 };
 
-const editBoat = (req, res) => {
-  const boat = req.body;
-  boat.id = parseInt(req.params.id, 10);
-  models.boat
-    .update(boat)
+const editTile = (req, res) => {
+  const tile = req.body;
+  tile.id = parseInt(req.params.id, 10);
+  models.tile
+    .update(tile)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -59,8 +59,8 @@ const editBoat = (req, res) => {
     });
 };
 
-const deleteBoat = (req, res) => {
-  models.boat
+const deleteTile = (req, res) => {
+  models.tile
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -76,9 +76,9 @@ const deleteBoat = (req, res) => {
 };
 
 module.exports = {
-  findAllBoats,
-  findBoatById,
-  createNewBoat,
-  editBoat,
-  deleteBoat,
+  findAllTiles,
+  findTileById,
+  createNewTile,
+  editTile,
+  deleteTile,
 };
