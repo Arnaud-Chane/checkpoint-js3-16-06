@@ -8,4 +8,6 @@ const boatController = require("./controllers/boatController");
 router.get("/tiles", tileController.getAllTiles);
 router.get("/boats", boatController.getAllBoatsOrByName);
 
+router.put("/boats/:id", boatController.updateBoatPosition);
+
 module.exports = router;
