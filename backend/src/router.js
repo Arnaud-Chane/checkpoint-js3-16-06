@@ -6,6 +6,6 @@ const tileController = require("./controllers/tileController");
 const boatController = require("./controllers/boatController");
 
 router.get("/tiles", tileController.getAllTiles);
-router.get("/boats", boatController.getAllBoats);
+router.get("/boats", boatController.getAllBoatsOrByName);
 
 module.exports = router;

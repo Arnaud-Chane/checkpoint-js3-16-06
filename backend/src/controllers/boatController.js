@@ -10,9 +10,7 @@ const getAllBoatsOrByName = (req, res) => {
         res.status(200).send(results[0]);
       })
       .catch((err) => {
-        res
-          .status(500)
-          .send("Pd at retrieving boat by its name. Error : ", err);
+        res.status(500).json({ error: err.message });
       });
   } else {
     models.boat
@@ -21,7 +19,7 @@ const getAllBoatsOrByName = (req, res) => {
         res.status(200).send(results[0]);
       })
       .catch((err) => {
-        res.status(500).send("Pb to retrieve all the boats. Error : ", err);
+        res.status(500).json({ error: err.message });
       });
   }
 };

@@ -6,10 +6,9 @@ class BoatManager extends AbstractManager {
   }
 
   findByName(name) {
-    return this.connection.query(
-      `SELECT * FROM ${this.tables} where name = ?`,
-      [name]
-    );
+    return this.connection.query(`SELECT * FROM ${this.table} where name = ?`, [
+      name,
+    ]);
   }
 }
 
