@@ -84,18 +84,18 @@ function Map() {
                   S
                 </Link>
                 <Link
-                  to={`/boats/${blackPearl.id}/move/${blackPearl.coord_x + 1}/${
-                    blackPearl.coord_y
-                  }`}
-                >
-                  E
-                </Link>
-                <Link
                   to={`/boats/${blackPearl.id}/move/${blackPearl.coord_x - 1}/${
                     blackPearl.coord_y
                   }`}
                 >
                   W
+                </Link>
+                <Link
+                  to={`/boats/${blackPearl.id}/move/${blackPearl.coord_x + 1}/${
+                    blackPearl.coord_y
+                  }`}
+                >
+                  E
                 </Link>
               </>
             )}

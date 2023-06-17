@@ -26,12 +26,16 @@ const getAllBoatsOrByName = (req, res) => {
 
 const updateBoatPosition = (req, res) => {
   const boatPosition = req.body;
-  const id = parseInt(req.params, 2);
+  const { id } = req.params;
 
   models.boat
-    .updateBoatPosition(boatPosition, id)
+    .updateBoatPosition(boatPosition, parseInt(id, 10))
     .then((results) => {
-      res.status(200).send(results[0]);
+      if (results.affectedRows === 0) {
+        res.status(404).send("Can't update boat position mate");
+      } else {
+        res.sendStatus(204);
+      }
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
