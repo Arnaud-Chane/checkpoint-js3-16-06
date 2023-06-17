@@ -4,6 +4,13 @@ class BoatManager extends AbstractManager {
   constructor() {
     super({ table: "boat" });
   }
+
+  findByName(name) {
+    return this.connection.query(
+      `SELECT * FROM ${this.tables} where name = ?`,
+      [name]
+    );
+  }
 }
 
 module.exports = BoatManager;
