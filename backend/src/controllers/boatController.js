@@ -42,7 +42,23 @@ const updateBoatPosition = (req, res) => {
     });
 };
 
+const resetBoatPosition = (req, res, next) => {
+  models.boat
+    .resetBoat()
+    .then((results) => {
+      if (results.affectedRows === 0) {
+        res.status(404).send("Can't update boat position mate");
+      } else {
+        next();
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+};
+
 module.exports = {
   getAllBoatsOrByName,
   updateBoatPosition,
+  resetBoatPosition,
 };

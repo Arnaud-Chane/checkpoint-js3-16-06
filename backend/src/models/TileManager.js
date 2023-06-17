@@ -13,7 +13,12 @@ class TileManager extends AbstractManager {
   }
 
   resetTreasureTile() {
-    return this.connection.query(`UPDATE tile SET has_treasure = 1`);
+    return this.connection.query(
+      `
+      UPDATE tile SET has_treasure = 0;
+      UPDATE tile SET has_treasure = 1 ORDER BY RAND() LIMIT 1;
+      `
+    );
   }
 }
 

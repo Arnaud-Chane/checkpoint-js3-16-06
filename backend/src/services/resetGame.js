@@ -1,8 +1,8 @@
 const models = require("../models");
 
 const resetTheGame = (req, res) => {
-  models.boat
-    .resetBoat()
+  models.tile
+    .resetTreasureTile()
     .then((row) => {
       if (row[0] == null) {
         res.status(404).send("Nope");
