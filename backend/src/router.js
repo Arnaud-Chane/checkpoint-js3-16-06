@@ -17,6 +17,6 @@ router.put(
   boatController.updateBoatPosition
 );
 
-router.post("./games", resetGame);
+router.post("/games", resetGame.resetTheGame);
 
 module.exports = router;
