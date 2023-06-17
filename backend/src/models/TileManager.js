@@ -11,6 +11,10 @@ class TileManager extends AbstractManager {
       [tile.coord_x, tile.coord_y]
     );
   }
+
+  resetTreasureTile() {
+    return this.connection.query(`UPDATE tile SET has_treasure = 1`);
+  }
 }
 
 module.exports = TileManager;
