@@ -5,7 +5,7 @@ class TileManager extends AbstractManager {
     super({ table: "tile" });
   }
 
-  isTileExists(tile) {
+  matchedTile(tile) {
     return this.connection.query(
       `SELECT * FROM ${this.table} WHERE coord_x = ? AND coord_Y = ?`,
       [tile.coord_x, tile.coord_y]

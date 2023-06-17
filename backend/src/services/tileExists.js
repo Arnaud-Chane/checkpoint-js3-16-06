@@ -1,13 +1,12 @@
 const models = require("../models");
 
-const isTileExits = (req, res, next) => {
+const isTileExists = (req, res, next) => {
   const boatPosition = req.body;
 
   models.tile
-    .isTileExits(boatPosition)
+    .matchedTile(boatPosition)
     .then((results) => {
-      if (results) {
-        res.sendStatus(204);
+      if (results[0].length > 0) {
         next();
       } else {
         res.sendStatus(404);
@@ -22,5 +21,5 @@ const isTileExits = (req, res, next) => {
 };
 
 module.exports = {
-  isTileExits,
+  isTileExists,
 };
