@@ -4,7 +4,7 @@ const getAllBoats = (req, res) => {
   models.boat
     .findAll()
     .then((results) => {
-      res.status(200).send(results);
+      res.status(200).send(results[0]);
     })
     .catch((err) => {
       console.error(err);
