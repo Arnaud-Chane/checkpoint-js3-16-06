@@ -16,7 +16,7 @@ class TileManager extends AbstractManager {
     return this.connection.query(
       `
       UPDATE tile SET has_treasure = 0;
-      UPDATE tile SET has_treasure = 1 ORDER BY RAND() LIMIT 1;
+      UPDATE tile SET has_treasure = 1 where type = 'island' ORDER BY RAND() LIMIT 1;
       `
     );
   }
