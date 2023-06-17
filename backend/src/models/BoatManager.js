@@ -11,10 +11,10 @@ class BoatManager extends AbstractManager {
     ]);
   }
 
-  updateBoatPosition(boat) {
+  updateBoatPosition(boat, id) {
     return this.connection.query(
-      `UPDATE ${this.table} SET coord_x = ?, coord_y = ?`,
-      [boat.coord_x, boat.coord_y]
+      `UPDATE ${this.table} SET coord_x = ?, coord_y = ? WHERE id = ?`,
+      [boat.coord_x, boat.coord_y, id]
     );
   }
 }

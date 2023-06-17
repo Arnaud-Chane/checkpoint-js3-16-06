@@ -24,6 +24,21 @@ const getAllBoatsOrByName = (req, res) => {
   }
 };
 
+const updateBoatPosition = (req, res) => {
+  const boatPosition = req.body;
+  const id = parseInt(req.params, 2);
+
+  models.boat
+    .updateBoatPosition(boatPosition, id)
+    .then((results) => {
+      res.status(200).send(results[0]);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+};
+
 module.exports = {
   getAllBoatsOrByName,
+  updateBoatPosition,
 };
