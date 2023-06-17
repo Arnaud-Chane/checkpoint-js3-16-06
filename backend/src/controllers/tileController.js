@@ -7,8 +7,7 @@ const getAllTiles = (req, res) => {
       res.status(200).send(results[0]);
     })
     .catch((err) => {
-      console.error(err);
-      res.status(500).send("Pb to retreive all the tiles");
+      res.status(500).send("Pb to retreive all the tiles. Error : ", err);
     });
 };
 
