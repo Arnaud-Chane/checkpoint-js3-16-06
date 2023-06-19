@@ -1,0 +1,64 @@
+const models = require("../models");
+
+const getAllBoatsOrByName = (req, res) => {
+  const { name } = req.query;
+
+  if (name) {
+    models.boat
+      .findByName(name)
+      .then((results) => {
+        res.status(200).send(results[0]);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  } else {
+    models.boat
+      .findAll()
+      .then((results) => {
+        res.status(200).send(results[0]);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  }
+};
+
+const updateBoatPosition = (req, res) => {
+  const boatPosition = req.body;
+  const { id } = req.params;
+
+  models.boat
+    .updateBoatPosition(boatPosition, parseInt(id, 10))
+    .then((results) => {
+      if (results.affectedRows === 0) {
+        res.status(404).send("Can't update boat position mate");
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+};
+
+const resetBoatPosition = (req, res, next) => {
+  models.boat
+    .resetBoat()
+    .then((results) => {
+      if (results.affectedRows === 0) {
+        res.status(404).send("Can't update boat position mate");
+      } else {
+        next();
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+};
+
+module.exports = {
+  getAllBoatsOrByName,
+  updateBoatPosition,
+  resetBoatPosition,
+};

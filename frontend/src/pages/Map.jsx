@@ -56,12 +56,18 @@ function Map() {
             <h2>Information</h2>
             {blackPearl && (
               <dl>
-                <dt>x</dt>
+                <dt>Position X</dt>
                 <dl>{blackPearl.coord_x}</dl>
-                <dt>y</dt>
+                <dt>Position Y</dt>
                 <dl>{blackPearl.coord_y}</dl>
-                <dt>type</dt>
+                <dt>Type</dt>
                 <dl>{blackPearl.type}</dl>
+                <dt>Treasure</dt>
+                <dl>
+                  {blackPearl.has_treasure
+                    ? "There's a treasure !"
+                    : "Nope, nothing's here."}
+                </dl>
               </dl>
             )}
           </div>
@@ -84,18 +90,18 @@ function Map() {
                   S
                 </Link>
                 <Link
-                  to={`/boats/${blackPearl.id}/move/${blackPearl.coord_x + 1}/${
-                    blackPearl.coord_y
-                  }`}
-                >
-                  E
-                </Link>
-                <Link
                   to={`/boats/${blackPearl.id}/move/${blackPearl.coord_x - 1}/${
                     blackPearl.coord_y
                   }`}
                 >
                   W
+                </Link>
+                <Link
+                  to={`/boats/${blackPearl.id}/move/${blackPearl.coord_x + 1}/${
+                    blackPearl.coord_y
+                  }`}
+                >
+                  E
                 </Link>
               </>
             )}
